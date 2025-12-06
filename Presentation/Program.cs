@@ -14,6 +14,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// Memory Cache service
+builder.Services.AddMemoryCache();
+
+// Register the Repositories as KEYED services (AA2.3)
+// "db" -> ItemsDbRepository
+// "memory" -> ItemsInMemoryRepository
+builder.Services.AddKeyedScoped<Domain.Interfaces.IItemsRepository, DataAccess.Repositories.ItemsDbRepository>("db");
+builder.Services.AddKeyedScoped<Domain.Interfaces.IItemsRepository, DataAccess.Repositories.ItemsInMemoryRepository>("memory");
 
 var app = builder.Build();
 
