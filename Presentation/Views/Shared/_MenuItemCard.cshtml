@@ -1,0 +1,33 @@
+﻿@model Domain.Models.MenuItem
+
+<!-- w-100 to stretch out and look like a row -->
+<div class="card w-100 mb-2 shadow-sm">
+    <div class="card-body d-flex justify-content-between align-items-center">
+
+        <div class="d-flex align-items-center">
+            <!-- Small thumbnail for the list view -->
+            <img src="@(string.IsNullOrEmpty(Model.ImagePath) ? "/images/default.jpg" : Model.ImagePath)"
+                 class="rounded-circle me-3"
+                 style="width: 50px; height: 50px; object-fit: cover;">
+
+            <div>
+                <h5 class="card-title mb-0">@Model.Title</h5>
+                <!-- Show which restaurant it belongs to (optional context) -->
+                <small class="text-muted">
+                    @if (Model.Restaurant != null)
+                    {
+                        <span>from @Model.Restaurant.Name</span>
+                    }
+                    | Status: @Model.Status
+                </small>
+            </div>
+        </div>
+
+        <div>
+            <span class="badge bg-primary rounded-pill" style="font-size: 1.1em;">
+                @Model.Price.ToString("0.00") @Model.Currency
+            </span>
+        </div>
+
+    </div>
+</div>

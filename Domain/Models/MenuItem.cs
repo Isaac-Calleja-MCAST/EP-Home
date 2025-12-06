@@ -14,6 +14,11 @@ namespace Domain.Models
         public double Price { get; set; }
         public string Status { get; set; } = "Pending";
 
+        // --- NEW PROPERTIES ---
+        public string Currency { get; set; }  // From JSON (e.g. "EUR")
+        public string ImagePath { get; set; } // For AA4.3
+        // ----------------------
+
         // Foreign Key
         public int RestaurantId { get; set; }
         [ForeignKey("RestaurantId")]

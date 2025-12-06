@@ -1,0 +1,26 @@
+﻿@model Domain.Models.Restaurant
+
+<!-- Fixed width creates the "Grid/Card" look -->
+<div class="card mb-4 shadow-sm" style="width: 18rem; margin-right: 15px;">
+
+    <!-- Image Logic: Fallback to a default if null (AA4.3 prep) -->
+    <img src="@(string.IsNullOrEmpty(Model.ImagePath) ? "/images/default.jpg" : Model.ImagePath)"
+         class="card-img-top"
+         alt="@Model.Name"
+         style="height: 200px; object-fit: cover;">
+
+    <div class="card-body">
+        <h5 class="card-title">@Model.Name</h5>
+        <p class="card-text text-muted">@Model.Description</p>
+
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+                <!-- IMPORTANT: This link adds the query string ?restaurantId=X -->
+                <!-- This triggers the Controller to switch to "List View" for items -->
+                <a href="@Url.Action("Index", "Catalog", new { restaurantId = Model.Id })"
+                   class="btn btn-sm btn-outline-secondary">View Menu</a>
+            </div>
+            <small class="text-muted">@Model.Status</small>
+        </div>
+    </div>
+</div>
