@@ -1,0 +1,41 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build Folders
+bin/
+obj/
+
+# NuGet Packages
+*.nupkg
+packages/
+*.snupkg
+
+# Rider / JetBrains
+.idea/
+
+# ASP.NET / .NET Core
+appsettings.*.json
+*.db
+*.log
+*.seeddata.json
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Optional: Test results
+TestResults/
+
+# Coverage
+coverage/
+
+# Rider & VSCode
+.vscode/
+
+# Others
+*.pidb
+*.backup
