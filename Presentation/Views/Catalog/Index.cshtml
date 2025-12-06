@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Domain.Interfaces.IItemValidating>
+
+<h2>Catalog / Verification</h2>
+
+<form asp-action="Approve" method="post">
+    <div style="display:flex; flex-wrap:wrap; gap:10px;">
+        @foreach (var item in Model)
+        {
+            <div style="border:1px solid #ccc; padding:10px;">
+                <!-- Only show checkbox if item is Pending (for verification) -->
+                @if (item.Status == "Pending")
+                {
+                    <input type="checkbox" name="ids" value="@item.GetIdString()" />
+                }
+
+                <!-- Polymorphism: The item decides the view -->
+                @await Html.PartialAsync(item.GetCardPartial(), item)
+            </div>
+        }
+    </div>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <button type="submit" class="btn btn-primary mt-2">Approve Selected</button>
+    }
+</form>
