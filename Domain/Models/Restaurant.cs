@@ -12,6 +12,13 @@ namespace Domain.Models
         public string OwnerEmailAddress { get; set; }
         public string Status { get; set; } = "Pending";
 
+        // --- NEW PROPERTIES ---
+        public string Description { get; set; } // For the Card View
+        public string Address { get; set; }     // From JSON
+        public string Phone { get; set; }       // From JSON
+        public string ImagePath { get; set; }   // For AA4.3 (Uploads)
+        // ----------------------
+
         // Navigation Property for relational DB
         public virtual ICollection<MenuItem> MenuItems { get; set; }
 

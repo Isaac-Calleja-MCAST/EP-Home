@@ -52,7 +52,7 @@ namespace Presentation.Controllers
                     .Where(m => m.Status == "Pending" && m.Restaurant.OwnerEmailAddress == email);
             }
 
-            // Reuse the Index view!
+            // Reuse of the Index view
             return View("Index", pending);
         }
 
