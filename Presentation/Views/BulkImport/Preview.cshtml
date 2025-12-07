@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Domain.Interfaces.IItemValidating>
+
+@{
+    ViewData["Title"] = "Preview Import";
+}
+
+<div class="container mt-4">
+    <h2>Import Preview</h2>
+    <p class="text-muted">These items are currently in memory. They are NOT saved to the database yet.</p>
+
+    <!-- Step 1: Show Data -->
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Status</th>
+                <th>Info</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.GetIdString()</td>
+                    <td>@item.GetType().Name</td>
+                    <td>@item.Status</td>
+                    <td>
+                        @if (item is Domain.Models.Restaurant r)
+                        {
+                            <span>@r.Name (@r.OwnerEmailAddress)</span>
+                        }
+                        else if (item is Domain.Models.MenuItem m)
+                        {
+                            <span>@m.Title - @m.Price @m.Currency</span>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <hr />
+
+    <!-- Step 2: Download Zip -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-info text-white">Step 1: Get Folders</div>
+                <div class="card-body">
+                    <p>Download the generated folder structure. Add your images inside the folders.</p>
+                    <a asp-action="DownloadZip" class="btn btn-outline-primary">Download Skeleton ZIP</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Upload Zip & Commit -->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-success text-white">Step 2: Commit Import</div>
+                <div class="card-body">
+                    <p>Upload the ZIP file containing your images to finalize the import.</p>
+                    <form asp-action="Commit" method="post" enctype="multipart/form-data">
+                        <div class="input-group mb-3">
+                            <input type="file" name="zipFile" class="form-control" accept=".zip">
+                            <button class="btn btn-success" type="submit">Commit to DB</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

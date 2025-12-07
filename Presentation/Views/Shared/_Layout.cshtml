@@ -25,7 +25,20 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Catalog" asp-action="Index">Catalog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="BulkImport" asp-action="Index">Bulk Import</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Catalog" asp-action="Verification">Verification</a>
+                        </li>
+
+
                     </ul>
+                    <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
