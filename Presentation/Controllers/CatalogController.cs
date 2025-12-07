@@ -57,6 +57,7 @@ namespace Presentation.Controllers
         }
 
         [HttpPost]
+        [TypeFilter(typeof(Presentation.Filters.ValidatorCheckFilter))]
         public IActionResult Approve(List<string> ids, [FromKeyedServices("db")] IItemsRepository dbRepo)
         {
             foreach (var id in ids) dbRepo.Approve(id);
