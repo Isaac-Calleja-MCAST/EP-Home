@@ -16,7 +16,7 @@ namespace Domain.Models
 
         // --- NEW PROPERTIES ---
         public string Currency { get; set; }  // From JSON (e.g. "EUR")
-        public string ImagePath { get; set; } // For AA4.3
+        public string ImagePath { get; set; } = "/images/default.jpg"; // For AA4.3
         // ----------------------
 
         // Foreign Key

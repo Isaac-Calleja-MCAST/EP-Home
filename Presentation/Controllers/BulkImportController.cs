@@ -93,12 +93,12 @@ namespace Presentation.Controllers
                 {
                     foreach (var item in items)
                     {
-                        // Match zip entries starting with the Item ID (e.g. "R-1001/my-pic.jpg")
-                        var imageEntry = archive.Entries.FirstOrDefault(e =>
-                            e.FullName.StartsWith(item.GetIdString(), StringComparison.OrdinalIgnoreCase) &&
-                            (e.FullName.EndsWith(".jpg", StringComparison.OrdinalIgnoreCase) ||
-                             e.FullName.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ||
-                             e.FullName.EndsWith(".jpeg", StringComparison.OrdinalIgnoreCase)));
+                        // Get all images in folder
+                        var potentialImages = archive.Entries.Where(e => e.FullName.StartsWith(item.GetIdString(), StringComparison.OrdinalIgnoreCase) &&
+                            (e.FullName.EndsWith(".jpg") || e.FullName.EndsWith(".png") || e.FullName.EndsWith(".jpeg"))).ToList();
+
+                        // Ignores the default if user uploaded another image
+                        var imageEntry = potentialImages.FirstOrDefault(e => !e.Name.Equals("default.jpg", StringComparison.OrdinalIgnoreCase)) ?? potentialImages.FirstOrDefault();
 
                         if (imageEntry != null)
                         {

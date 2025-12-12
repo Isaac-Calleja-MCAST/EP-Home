@@ -16,7 +16,7 @@ namespace Domain.Models
         public string Description { get; set; } // For the Card View
         public string Address { get; set; }     // From JSON
         public string Phone { get; set; }       // From JSON
-        public string ImagePath { get; set; }   // For AA4.3 (Uploads)
+        public string ImagePath { get; set; } = "/images/default.jpg";  // For AA4.3 (Uploads)
         // ----------------------
 
         // Navigation Property for relational DB
