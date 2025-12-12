@@ -20,14 +20,16 @@ namespace Presentation.Factory
 
                 if (type == "restaurant")
                 {
-                    // Map JSON to Restaurant
-                    var r = token.ToObject<Restaurant>();
+                    // Restaurant Object Initialization
+                    var r = new Restaurant();
 
                     // Fix ID: remove "R-" prefix
                     string rawId = token["id"].ToString();
                     r.Id = int.Parse(rawId.Replace("R-", ""));
 
-                    // NEW FIELDS
+                    // FIELDS
+                    r.Name = token["name"]?.ToString();
+                    r.OwnerEmailAddress = token["ownerEmailAddress"]?.ToString();
                     r.Description = token["description"]?.ToString();
                     r.Address = token["address"]?.ToString();
                     r.Phone = token["phone"]?.ToString();
@@ -36,18 +38,28 @@ namespace Presentation.Factory
                     list.Add(r);
                 }
                 else if (type == "menuItem")
-                {
-                    var m = token.ToObject<MenuItem>();
+                {   
+                    // Initialized MenuItem Object
+                    var m = new MenuItem();
 
                     // Fix ID: generate new Guid
                     m.Id = Guid.NewGuid(); // Generate new Guid per brief
 
-                    // Fix Restaurant ID link
-                    string rawRestId = token["restaurantId"].ToString();
-                    m.RestaurantId = int.Parse(rawRestId.Replace("R-", ""));
 
                     // NEW FIELD
+                    m.Title = token["title"]?.ToString();
+                    if (double.TryParse(token["price"]?.ToString(), out double price))
+                    {
+                        m.Price = price;
+                    }
                     m.Currency = token["currency"]?.ToString();
+
+                    // Fixed
+                    string rawRestId = token["restaurantId"]?.ToString();
+                    if (!string.IsNullOrEmpty(rawRestId))
+                    {
+                        m.RestaurantId = int.Parse(rawRestId.Replace("R-", ""));
+                    }
 
                     m.Status = "Pending";
                     list.Add(m);
