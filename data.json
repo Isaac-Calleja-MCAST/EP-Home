@@ -1,0 +1,36 @@
+[
+{
+"type": "restaurant",
+"id": "R-1001",
+"name": "Trattoria Luca",
+"description": "Pasta & grill with fresh daily specials",
+"ownerEmailAddress": "luca.owner@example.com",
+"address": "123 Harbor Road, Valletta",
+"phone": "+356 1234 5678"
+},
+{
+"type": "restaurant",
+"id": "R-1002",
+"name": "Sushi Wave",
+"description": "Classic nigiri and creative rolls",
+"ownerEmailAddress": "hana.owner@example.com",
+"address": "45 Marina Street, Sliema",
+"phone": "+356 9876 5432"
+},
+{
+"type": "menuItem",
+"id": "M-2001",
+"title": "Tagliatelle al Ragù",
+"price": 11.50,
+"currency": "EUR",
+"restaurantId": "R-1001"
+},
+{
+"type": "menuItem",
+"id": "M-2002",
+"title": "Ribeye 300g",
+"price": 24.00,
+"currency": "EUR",
+"restaurantId": "R-1001"
+}
+]
